@@ -1,8 +1,8 @@
 #include <PS2X_lib.h>
 #include <Adafruit_PWMServoDriver.h>
 #include <Wire.h>
-#include <define.h>
-#include <function.h>
+#include <components/define.h>
+#include <components/function.h>
 /******************************************************************
  * Cài đặt chân cho thư viện :
  * - Trên mạch Motorshield của VIA Makerbot BANHMI, có header 6 chân
@@ -97,7 +97,6 @@ void loop() {
     Serial.print("DOWN held this hard: ");
     Serial.println(ps2x.Analog(PSAB_PAD_DOWN), DEC);
   }
-
   if (ps2x.NewButtonState()) {  // Trả về giá trị TRUE khi nút được thay đổi trạng thái (bật sang tắt, or tắt sang bật)
     if (ps2x.Button(PSB_L3))
       Serial.println("L3 pressed");
@@ -118,8 +117,8 @@ void loop() {
   if (ps2x.ButtonReleased(PSB_SQUARE))  //  Trả về giá trị TRUE khi nút được ấn (từ tắt sang bật)
     Serial.println("□ just released");
 
-  if (ps2x.Button(PSB_L1) || ps2x.Button(PSB_R1))  // các trả về giá trị TRUE khi nút được giữ
-  {                                                // Đọc giá trị 2 joystick khi nút L1 hoặc R1 được giữ
+  if (ps2x.Button(PSB_L1) || ps2x.Button(PSB_R1)) { // các trả về giá trị TRUE khi nút được giữ
+    // Đọc giá trị 2 joystick khi nút L1 hoặc R1 được giữ
     Serial.print("Stick Values:");
     Serial.print(ps2x.Analog(PSS_LY));  // đọc trục Y của joystick bên trái. Other options: LX, RY, RX
     Serial.print(",");
